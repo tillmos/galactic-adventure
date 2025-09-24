@@ -1,0 +1,31 @@
+{
+  "name": "galactic-spacefarers",
+  "version": "1.0.0",
+  "description": "Galactic Spacefarer Adventure CAP Project",
+  "scripts": {
+    "start": "cds run",
+    "watch": "cds watch"
+  },
+  "dependencies": {
+    "@cap-js/sqlite": "^2.0.2",
+    "@sap/cds": "^9.3.1",
+    "sqlite3": "^5"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "private": true,
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sql",
+        "model": [
+          "db/schema.cds"
+        ],
+        "credentials": {
+          "url": "sqlite:sqlite.db"
+        }
+      }
+    }
+  }
+}
