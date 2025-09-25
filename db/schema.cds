@@ -3,6 +3,7 @@ namespace galactic;
 entity Spacefarers {
   key ID: UUID;                  
   name: String(111);
+  email: String(111);
   stardustCollection: Integer;
   wormholeNavigationSkill: Integer;
   originPlanet: String;

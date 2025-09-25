@@ -1,4 +1,6 @@
 const cds = require('@sap/cds');
+const { sendEmail } = require('./emailService'); 
+
 
 module.exports = cds.service.impl(async function () {
   const { Spacefarers } = this.entities;
@@ -28,9 +30,17 @@ module.exports = cds.service.impl(async function () {
 
   
 
- this.after('CREATE', Spacefarers, (spacefarer, req) => {
+ 
+    this.after('CREATE', Spacefarers, async (spacefarer, req) => {
+        console.log(`after create`);
 
-    console.log(`after create ${spacefarer.name}`);
+        if (spacefarer.email) {
+            await sendEmail(
+                spacefarer.email,
+                'Your Galactic Journey Begins!',
+                `Congratulations ${spacefarer.name}! You have successfully started your cosmic adventure among the stars.`
+            );
+        }
+    });
 
-  });
 });
