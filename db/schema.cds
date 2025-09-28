@@ -1,6 +1,7 @@
 namespace galactic;
 
 entity Spacefarers {
+  @cds.autoGenerate: true
   key ID: UUID;                  
   name: String(111);
   email: String(111);
@@ -16,11 +17,13 @@ entity Spacefarers {
 
 
 entity Departments {
+  @cds.autoGenerate: true
   key ID: UUID;
   name: String;
 }
 
 entity Positions {
+  @cds.autoGenerate: true
   key ID: UUID;
   title: String;
   department: Association to Departments;

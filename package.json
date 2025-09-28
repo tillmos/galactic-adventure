@@ -4,7 +4,8 @@
   "description": "Galactic Spacefarer Adventure CAP Project",
   "scripts": {
     "start": "cds run",
-    "watch": "cds watch"
+    "watch": "cds watch",
+    "watch-project1": "cds watch --open galactic.project1/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "dependencies": {
     "@cap-js/sqlite": "^2.0.2",
@@ -29,5 +30,17 @@
         }
       }
     }
-  }
+  },
+ "devDependencies": {
+  "@sap/generator-fiori": "^1.18.7",
+  "@sap/ux-specification": "^1.124.18",
+  "@sap/ux-ui5-tooling": "1.16.3",
+"cds-plugin-ui5": "^0.13.0"
+},
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/project1"
+  ]
 }
