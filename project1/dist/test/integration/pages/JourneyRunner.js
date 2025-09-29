@@ -1,0 +1,2 @@
+sap.ui.define(["sap/fe/test/JourneyRunner","galactic/project1/test/integration/pages/SpacefarersList","galactic/project1/test/integration/pages/SpacefarersObjectPage"],function(e,t,a){"use strict";var r=new e({launchUrl:sap.ui.require.toUrl("galactic/project1")+"/test/flp.html#app-preview",pages:{onTheSpacefarersList:t,onTheSpacefarersObjectPage:a},async:true});return r});
+//# sourceMappingURL=JourneyRunner.js.map
