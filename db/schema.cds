@@ -13,7 +13,7 @@ entity Spacefarers {
   originPlanet: String;
   @UI.Editable: true
   @Capabilities.Updatable: true
-  spacesuitColor: String;
+  spacesuitColor: SpacesuitColors;
 
   department: Association to Departments;
   position: Association to Positions;
@@ -43,4 +43,12 @@ entity Positions {
   key ID: UUID;
   title: String;
   department: Association to Departments;
+}
+
+type SpacesuitColors : String enum {
+  RED;
+  BLUE;
+  GREEN;
+  WHITE;
+  BLACK;
 }

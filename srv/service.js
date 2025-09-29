@@ -14,7 +14,7 @@ module.exports = cds.service.impl(async function () {
     }
 
 
-    if (stardustCollection < 0) {
+    if  (stardustCollection == null || stardustCollection < 0) {
       req.error(400, 'stardustCollection cannot be negative');
     }
 
