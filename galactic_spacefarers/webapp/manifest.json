@@ -1,7 +1,7 @@
 {
   "_version": "1.76.0",
   "sap.app": {
-    "id": "galactic.project1",
+    "id": "galactic.galacticspacefarers",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -9,6 +9,12 @@
     },
     "title": "{{appTitle}}",
     "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.18.7",
+      "toolsId": "398f7d42-9fa1-4586-a50c-de4439096623"
+    },
     "dataSources": {
       "annotation": {
         "type": "ODataAnnotation",
@@ -30,20 +36,41 @@
       }
     }
   },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
   "sap.ui5": {
+    "flexEnabled": true,
     "dependencies": {
       "minUI5Version": "1.140.0",
       "libs": {
         "sap.m": {},
-        "sap.fe.templates": {},
-        "sap.ui.core": {}
+        "sap.ui.core": {},
+        "sap.fe.templates": {}
       }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
     },
     "models": {
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "galactic.project1.i18n.i18n"
+          "bundleName": "galactic.galacticspacefarers.i18n.i18n"
         }
       },
       "": {
@@ -54,9 +81,17 @@
           "autoExpandSelect": true,
           "earlyRequests": true
         }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
       }
     },
+    "resources": {
+      "css": []
+    },
     "routing": {
+      "config": {},
       "routes": [
         {
           "pattern": ":?query:",
@@ -72,29 +107,45 @@
       "targets": {
         "SpacefarersList": {
           "type": "Component",
+          "id": "SpacefarersList",
           "name": "sap.fe.templates.ListReport",
           "options": {
             "settings": {
               "contextPath": "/Spacefarers",
               "variantManagement": "Page",
-              "navigation": {}
+              "navigation": {
+                "Spacefarers": {
+                  "detail": {
+                    "route": "SpacefarersObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable"
+                  }
+                }
+              }
             }
-          },
-          "id": "SpacefarersList"
+          }
         },
         "SpacefarersObjectPage": {
           "type": "Component",
+          "id": "SpacefarersObjectPage",
           "name": "sap.fe.templates.ObjectPage",
           "options": {
             "settings": {
+              "editableHeaderContent": false,
               "contextPath": "/Spacefarers"
             }
-          },
-          "id": "SpacefarersObjectPage"
+          }
         }
-      },
-      "config": {}
+      }
     }
   },
-  "sap.fiori": {}
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
 }

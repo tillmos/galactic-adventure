@@ -11,8 +11,48 @@
     <edmx:Reference Uri="/odata/v4/galactic/$metadata">
         <edmx:Include Namespace="GalacticService"/>
     </edmx:Reference>
+
     <edmx:DataServices>
-        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="local">
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="GalacticService.Annotations">
+
+            <!-- LineItem for List Report with row click navigation -->
+            <Annotations Target="GalacticService.Spacefarers">
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="name"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="stardustCollection"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="spacesuitColor"/>
+                        </Record>
+                        <!-- Use DataField with NavigationPropertyPath to enable row click navigation -->
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ID"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+
+                <!-- Editable fields for Object Page -->
+                <Annotation Term="UI.FieldGroup" Qualifier="EditGroup">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="stardustCollection"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="spacesuitColor"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+
+            </Annotations>
+
         </Schema>
     </edmx:DataServices>
 </edmx:Edmx>

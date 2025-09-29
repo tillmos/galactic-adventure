@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="GalacticService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotation Term="Core.Links">
+                <Collection>
+                    <Record>
+                        <PropertyValue Property="rel" String="author"/>
+                        <PropertyValue Property="href" String="https://cap.cloud.sap"/>
+                    </Record>
+                </Collection>
+            </Annotation>
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Spacefarers" EntityType="GalacticService.Spacefarers">
+                    <NavigationPropertyBinding Path="department" Target="Departments"/>
+                    <NavigationPropertyBinding Path="position" Target="Positions"/>
+                </EntitySet>
+                <EntitySet Name="Departments" EntityType="GalacticService.Departments"/>
+                <EntitySet Name="Positions" EntityType="GalacticService.Positions">
+                    <NavigationPropertyBinding Path="department" Target="Departments"/>
+                </EntitySet>
+            </EntityContainer>
+            <EntityType Name="Spacefarers">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="111"/>
+                <Property Name="email" Type="Edm.String" MaxLength="111"/>
+                <Property Name="stardustCollection" Type="Edm.Int32"/>
+                <Property Name="wormholeNavigationSkill" Type="Edm.Int32"/>
+                <Property Name="originPlanet" Type="Edm.String"/>
+                <Property Name="spacesuitColor" Type="Edm.String"/>
+                <NavigationProperty Name="department" Type="GalacticService.Departments">
+                    <ReferentialConstraint Property="department_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="department_ID" Type="Edm.Guid"/>
+                <NavigationProperty Name="position" Type="GalacticService.Positions">
+                    <ReferentialConstraint Property="position_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="position_ID" Type="Edm.Guid"/>
+                <Property Name="dummy" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="Departments">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="name" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="Positions">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="title" Type="Edm.String"/>
+                <NavigationProperty Name="department" Type="GalacticService.Departments">
+                    <ReferentialConstraint Property="department_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="department_ID" Type="Edm.Guid"/>
+            </EntityType>
+            <Annotations Target="GalacticService.Spacefarers">
+                <Annotation Term="UI.PresentationVariant">
+                    <Record Type="UI.PresentationVariantType">
+                        <PropertyValue Property="SortOrder">
+                            <Collection>
+                                <Record Type="Common.SortOrderType">
+                                    <PropertyValue Property="By" String="stardustCollection"/>
+                                    <PropertyValue Property="Descending" Bool="true"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>name</PropertyPath>
+                        <PropertyPath>spacesuitColor</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="name"/>
+                            <PropertyValue Property="Label" String="Spacefarer"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="stardustCollection"/>
+                            <PropertyValue Property="Label" String="Stardust Collection"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="spacesuitColor"/>
+                            <PropertyValue Property="Label" String="Spacesuit Color"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="GalacticService.EntityContainer/Spacefarers">
+                <Annotation Term="UI.PresentationVariant">
+                    <Record Type="UI.PresentationVariantType">
+                        <PropertyValue Property="SortOrder">
+                            <Collection>
+                                <Record Type="Common.SortOrderType">
+                                    <PropertyValue Property="By" String="stardustCollection"/>
+                                    <PropertyValue Property="Descending" Bool="true"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="GalacticService.Spacefarers/ID">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="GalacticService.Departments/ID">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="GalacticService.Positions/ID">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
