@@ -1,2 +1,0 @@
-sap.ui.define(["sap/fe/test/ObjectPage"],function(e){"use strict";var t={actions:{},assertions:{}};return new e({appId:"galactic.project1",componentId:"SpacefarersObjectPage",contextPath:"/Spacefarers"},t)});
-//# sourceMappingURL=SpacefarersObjectPage.js.map

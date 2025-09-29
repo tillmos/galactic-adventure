@@ -1,2 +1,0 @@
-sap.ui.define(["sap/ui/core/mvc/Controller"],function(e){"use strict";return e.extend("galactic.project1.controller.SpacefarersObjectPage",{onInit:function(){},onEdit:function(){var e=this.getView().byId("ObjectPageLayout");if(e){e.setMode("Editable")}}})});
-//# sourceMappingURL=SpacefarersObjectPage.controller.js.map
